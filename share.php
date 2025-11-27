@@ -14,24 +14,29 @@ if (empty($network) || empty($page_url)) {
 
 // 2. Préparation des variables (utilisez des fonctions de sécurité si l'URL n'est pas déjà encodée ou si elle provient d'une source non fiable)
 $encoded_url = urlencode($page_url);
+$encoded_url = urlencode("https://darkslateblue-porpoise-928853.hostingersite.com/share/article/5");
 
 // 3. Construction de l'URL de partage
 $share_url = '';
 
+$pageTitle = urlencode("test de partage\n\r");
+
+$pageDesc = urlencode("Une petite description et c'est tout\n\r");
+
 switch ($network) {
     case 'facebook':
         // Partage Facebook (nécessite seulement l'URL)
-        $share_url = "https://www.facebook.com/sharer/sharer.php?u={$encoded_url}";
+        $share_url = "https://www.facebook.com/sharer/sharer.php?u={$encoded_url}&title={$pageTitle}&summary={$pageDesc}&text={$pageDesc}";
         break;
     
     case 'twitter':
         // Partage Twitter (vous pouvez ajouter &text= pour pré-remplir le tweet, mais ici on se contente de l'URL)
-        $share_url = "https://twitter.com/intent/tweet?url={$encoded_url}";
+        $share_url = "https://twitter.com/intent/tweet?url={$encoded_url}&title={$pageTitle}--&summary={$pageDesc}&text={$pageDesc}";
         break;
     
     case 'linkedin':
         // Partage LinkedIn (mini=true force la petite fenêtre de partage)
-        $share_url = "https://www.linkedin.com/shareArticle?mini=true&url={$encoded_url}";
+        $share_url = "https://www.linkedin.com/shareArticle?mini=false&url={$encoded_url}&title={$pageTitle}&summary={$pageDesc}&text={$pageDesc}";
         break;
         
     default:
