@@ -14,7 +14,7 @@ if (empty($network) || empty($page_url)) {
 
 // 2. Préparation des variables (utilisez des fonctions de sécurité si l'URL n'est pas déjà encodée ou si elle provient d'une source non fiable)
 $encoded_url = urlencode($page_url);
-$encoded_url = urlencode("https://darkslateblue-porpoise-928853.hostingersite.com/share/article/5");
+//$encoded_url = urlencode("https://darkslateblue-porpoise-928853.hostingersite.com/share/article/5");
 
 // 3. Construction de l'URL de partage
 $share_url = '';
