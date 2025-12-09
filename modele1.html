@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moavis - Le plaisir de bâtir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .slide-in-right {
+        animation: slideInRight 1s ease-out forwards;
+      }
+
+      .parallax-section {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .hover-scale {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .hover-scale:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+      }
+
+      .service-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 0, 0, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .service-card:hover::before {
+        left: 100%;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ff0000;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+      }
+
+      .diagonal-section {
+        clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        margin: -50px 0;
+        padding: 80px 0;
+      }
+
+      .logo {
+        width: 100px;
+      }
+
+      .logo2 {
+        height: 150px;
+      }
+
+      .chero {
+        background-image: url("images/cover.jpeg");
+      }
+    </style>
+  </head>
+  <body class="font-sans text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center space-x-2">
+            <img class="logo" src="images/logo-noir.png" alt="" />
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#accueil"
+              class="nav-link text-gray-700 hover:text-red-600 font-medium"
+              >Accueil</a
+            >
+            <a
+              href="#apercu"
+              class="nav-link text-gray-700 hover:text-red-600 font-medium"
+              >Aperçu</a
+            >
+            <a
+              href="#services"
+              class="nav-link text-gray-700 hover:text-red-600 font-medium"
+              >Nos Services</a
+            >
+            <a
+              href="#realisations"
+              class="nav-link text-gray-700 hover:text-red-600 font-medium"
+              >Réalisations</a
+            >
+            <a
+              href="#mission"
+              class="nav-link text-gray-700 hover:text-red-600 font-medium"
+              >Notre Mission</a
+            >
+          </div>
+          <button
+            class="btn-primary text-white px-6 py-3 rounded-full font-semibold"
+          >
+            Contactez-Nous
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="accueil"
+      class="relative h-screen flex items-center justify-center overflow-hidden mt-20"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"
+      ></div>
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 bg-cover bg-center chero"></div>
+      </div>
+      <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+        <h1 class="text-6xl md:text-7xl font-bold text-white mb-6 fade-in-up">
+          Le plaisir de
+          <span
+            class="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700"
+            >bâtir</span
+          >
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-300 mb-8 fade-in-up"
+          style="animation-delay: 0.2s"
+        >
+          Chez Moavis construction, chaque projet commence par une vision claire
+          : construire avec une rigueur exemplaire, une créativité innovante et
+          une passion inébranlable pour l'excellence.
+        </p>
+        <button
+          class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg fade-in-up"
+          style="animation-delay: 0.4s"
+        >
+          Contactez-Nous
+        </button>
+      </div>
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <svg
+          class="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Aperçu Section -->
+    <section id="apercu" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="slide-in-right">
+            <h2 class="text-5xl font-bold mb-6">
+              <span class="gradient-text">Aperçu</span>
+            </h2>
+            <p class="text-gray-600 text-lg leading-relaxed mb-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing et. Mauris
+              turpis diam nibh ridiculus pretium. Maecenas ac pharetra arcu
+              diam. Vestibulum ut purus neque condimentum placerat, tincidunt
+              enim non sit amet vestibulum orci sit amet. Nunc, ut arcu metus
+              ultrices turpis a lorem in quam. Donec a porta ac mauris
+              vestibulum.
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed">
+              Adipiscing maecenas varius turpis et ultrices pharetra cursus
+              habitasse.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="hover-scale rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="images/c1.jpg"
+                alt="Construction"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-600 rounded-full opacity-20 blur-2xl"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="diagonal-section bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl font-bold mb-4">
+            Nos <span class="gradient-text">services</span>
+          </h2>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            Chez Moavis construction, chaque projet commence par une vision et
+            se termine par un ouvrage qui parle pour nous.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Bâtiment -->
+          <div
+            class="service-card bg-white rounded-2xl overflow-hidden shadow-lg hover-scale"
+          >
+            <div class="h-64 bg-gradient-to-br from-gray-200 to-gray-300">
+              <img
+                src="images/batiment.png"
+                alt="Bâtiment"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-gray-900">BÂTIMENT</h3>
+              <p class="text-gray-600 mb-4">
+                Conception, construction et rénovation de bâtiments
+                résidentiels, tertiaires et aménagements hydrauliques et
+                routiers.
+              </p>
+              <button
+                class="text-red-600 font-semibold hover:text-red-700 transition"
+              >
+                Voir plus →
+              </button>
+            </div>
+          </div>
+
+          <!-- Travaux Publics -->
+          <div
+            class="service-card bg-white rounded-2xl overflow-hidden shadow-lg hover-scale"
+            style="animation-delay: 0.1s"
+          >
+            <div class="h-64 bg-gradient-to-br from-gray-200 to-gray-300">
+              <img
+                src="images/travaux.png"
+                alt="Travaux Publics"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                TRAVAUX PUBLICS
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Génie Civil, terrassements, travaux d'infrastructure (routes,
+                ponts, ouvrages d'art (génie, viaduc)), tunnels, ouvrages,
+                boulevards, et chemins de fer.
+              </p>
+              <button
+                class="text-red-600 font-semibold hover:text-red-700 transition"
+              >
+                Voir plus →
+              </button>
+            </div>
+          </div>
+
+          <!-- Architecture -->
+          <div
+            class="service-card bg-white rounded-2xl overflow-hidden shadow-lg hover-scale"
+            style="animation-delay: 0.2s"
+          >
+            <div class="h-64 bg-gradient-to-br from-gray-200 to-gray-300">
+              <img
+                src="images/architecture.png"
+                alt="Architecture"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                ARCHITECTURE
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Création, design et maîtrise d'œuvre avec une vision globale de
+                la conception spatiale, intégration paysagère et la
+                planification urbaine.
+              </p>
+              <button
+                class="text-red-600 font-semibold hover:text-red-700 transition"
+              >
+                Voir plus →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réalisations Section -->
+    <section id="realisations" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl font-bold mb-12 text-center">
+          Nos <span class="gradient-text">Réalisations</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div
+              class="hover-scale bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-600"
+            >
+              <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                Bâtiment xxxx
+              </h3>
+              <p class="text-gray-600">
+                Body text for whatever you'd like to expand on the main point.
+              </p>
+            </div>
+            <div
+              class="hover-scale bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-600"
+            >
+              <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                Route de xxxx
+              </h3>
+              <p class="text-gray-600">
+                Body text for whatever you'd like to say. Add main takeaway
+                points, quotes, anecdotes.
+              </p>
+            </div>
+            <div
+              class="hover-scale bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-600"
+            >
+              <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                Plan de xxxx
+              </h3>
+              <p class="text-gray-600">
+                Body text for whatever you'd like to add more context. Provides
+                details, explanations, and context.
+              </p>
+            </div>
+            <div class="flex space-x-4">
+              <button
+                class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:border-red-600 hover:text-red-600 transition"
+              >
+                Voir tout
+              </button>
+              <button
+                class="btn-primary text-white px-6 py-3 rounded-full font-semibold"
+              >
+                Demander un Devis
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="col-span-2 hover-scale rounded-xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="images/c1.jpg"
+                alt="Réalisation"
+                class="w-full h-64 object-cover"
+                style="height: 100%"
+              />
+            </div>
+            <div class="hover-scale rounded-xl overflow-hidden shadow-lg">
+              <img
+                src="images/c2.jpg"
+                alt="Projet"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="hover-scale rounded-xl overflow-hidden shadow-lg">
+              <img
+                src="images/c3.jpg"
+                alt="Bâtiment"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section
+      id="mission"
+      class="diagonal-section bg-gradient-to-br from-gray-900 to-gray-800 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl font-bold mb-6 text-center">
+          Notre <span class="text-red-500">Mission</span>
+        </h2>
+        <p class="text-xl text-gray-300 text-center mb-16 max-w-4xl mx-auto">
+          CIRIS a nos offrons une solution intégrée pour leurs projets
+          immobiliers sans stress : études, financement, construction et
+          livraison clés en main, avec un haut niveau de transparence et de
+          qualité.
+        </p>
+
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent z-10"
+          ></div>
+          <img
+            src="images/mission.png"
+            alt="Notre Mission"
+            class="w-full h-96 object-cover"
+          />
+          <div class="absolute inset-0 flex items-center justify-center z-20">
+            <div class="p-8 sshadow-2xl">
+              <div class="flex items-center justify-center">
+                <div class="text-center">
+                  <img
+                    class="logo2"
+                    src="images/logo-blanc.png"
+                    alt="Logo Moavis"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center text-gray-300 text-lg mt-8">
+          Le plaisir de bâtir
+        </p>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl font-bold mb-12 text-center">
+          Nos <span class="gradient-text">Partenaires</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 items-center">
+          <a href="#">
+            <div
+              class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
+            >
+              <img src="images/company.png" alt="" />
+            </div>
+          </a>
+          <a href="#">
+            <div
+              class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
+            >
+              <img src="images/company.png" alt="" />
+            </div>
+          </a>
+          <a href="#">
+            <div
+              class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
+            >
+              <img src="images/company.png" alt="" />
+            </div>
+          </a>
+        </div>
+        <div class="pt-3 text-center text-red-600">
+          <a href="#" class="text-red">Voir toute la liste</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <img class="logo" src="images/logo-blanc.png" alt="Logo Moavis" />
+            </div>
+            <p class="text-gray-400 text-sm">Le plaisir de bâtir</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Horaires</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>Page</li>
+              <li>Page</li>
+              <li>Page</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Services</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>Page</li>
+              <li>Page</li>
+              <li>Page</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Liens utiles</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>Page</li>
+              <li>Page</li>
+              <li>Page</li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="flex space-x-4 mb-4 md:mb-0">
+            <a href="#" class="text-gray-400 hover:text-red-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-red-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-red-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.441 16.892c-2.102.144-6.784.144-8.883 0C5.282 16.736 5.017 15.622 5 12c.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0C18.718 7.264 18.982 8.378 19 12c-.018 3.629-.285 4.736-2.559 4.892zM10 9.658l4.917 2.338L10 14.342V9.658z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-red-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-red-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="text-gray-400 text-sm">
+            © 2025 Moavis. Tous droits réservés.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

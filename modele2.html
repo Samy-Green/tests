@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moavis - Le Plaisir de Bâtir</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuration de la police Inter et des couleurs personnalisées -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+      :root {
+        --color-primary: #ff0000;
+        --color-primary-dark: #cc0000;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden; /* Empêche le défilement horizontal */
+        background-color: #f7f7f7;
+      }
+
+      /* Styles de base pour les éléments modernes */
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Animation au défilement pour les sections (peut être simulée avec des classes) */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Style pour les boutons primaires Moavis */
+      .btn-primary {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        background-color: var(--color-primary);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(255, 0, 0, 0.3);
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--color-primary-dark);
+        transform: scale(1.02);
+      }
+
+      /* Custom style pour la barre de navigation semi-transparente */
+      .nav-sticky {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        width: 100px;
+      }
+
+      .logo2 {
+        height: 150px;
+      }
+    </style>
+    <!-- Icônes Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="text-gray-800">
+    <!-- BARRE DE NAVIGATION (FIXE/STICKY) -->
+    <header
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <!-- Logo Moavis (Utilisation d'un placeholder de logo stylisé) -->
+        <a href="#hero" class="text-2xl font-extrabold flex items-center">
+          <img class="logo" src="images/logo-noir.png" alt="" />
+        </a>
+
+        <!-- Menu de navigation (Desktop) -->
+        <div class="hidden md:flex space-x-8 font-medium">
+          <a
+            href="#apercu"
+            class="hover:text-[--color-primary] transition duration-200"
+            >Aperçu</a
+          >
+          <a
+            href="#services"
+            class="hover:text-[--color-primary] transition duration-200"
+            >Nos Services</a
+          >
+          <a
+            href="#realisations"
+            class="hover:text-[--color-primary] transition duration-200"
+            >Nos Réalisations</a
+          >
+          <a
+            href="#vision"
+            class="hover:text-[--color-primary] transition duration-200"
+            >Notre Vision</a
+          >
+          <a
+            href="#contact"
+            class="btn-primary py-2 px-4 text-sm shadow-lg hover:shadow-xl"
+            >Contactez-nous</a
+          >
+        </div>
+
+        <!-- Bouton Menu Mobile (Icône Burger) -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 rounded-md hover:bg-gray-100 transition"
+        >
+          <i data-lucide="menu" class="w-6 h-6 text-gray-800"></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Menu Mobile Déroulant -->
+    <div
+      id="mobile-menu"
+      class="hidden fixed top-[68px] left-0 right-0 z-40 bg-white shadow-xl md:hidden"
+    >
+      <a
+        href="#apercu"
+        class="block py-3 px-6 text-gray-700 hover:bg-gray-50 border-b"
+        >Aperçu</a
+      >
+      <a
+        href="#services"
+        class="block py-3 px-6 text-gray-700 hover:bg-gray-50 border-b"
+        >Nos Services</a
+      >
+      <a
+        href="#realisations"
+        class="block py-3 px-6 text-gray-700 hover:bg-gray-50 border-b"
+        >Nos Réalisations</a
+      >
+      <a
+        href="#vision"
+        class="block py-3 px-6 text-gray-700 hover:bg-gray-50 border-b"
+        >Notre Vision</a
+      >
+      <a href="#contact" class="block py-4 px-6 btn-primary text-center m-4"
+        >Contactez-nous</a
+      >
+    </div>
+
+    <!-- SECTION HERO (Avec Parallaxe et Image Moderne) -->
+    <section
+      id="hero"
+      class="relative h-screen flex items-center justify-center text-center overflow-hidden"
+    >
+      <!-- Image de fond moderne et haute qualité (Placeholder) -->
+      <div
+        id="hero-image"
+        class="absolute inset-0 bg-cover bg-center bg-fixed"
+        style="
+          background-image: url('./images/cover.jpeg');
+          background-attachment: fixed;
+        "
+      >
+        <!-- Overlay pour meilleure lisibilité du texte -->
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+      </div>
+
+      <div class="relative z-10 p-6 max-w-4xl mx-auto fade-in-up in-view">
+        <h1
+          class="text-6xl sm:text-7xl font-extrabold text-white leading-tight mb-4 tracking-tighter"
+        >
+          Le Plaisir de Bâtir
+        </h1>
+        <p class="text-xl text-gray-200 mb-8">
+          Moavis, votre partenaire de confiance pour des projets de construction
+          innovants, durables et sur mesure.
+        </p>
+        <a href="#services" class="btn-primary text-lg"
+          >Découvrez nos services</a
+        >
+      </div>
+    </section>
+
+    <!-- SECTION APERÇU / À PROPOS (CORRIGÉE SELON L'IMAGE FOURNIE) -->
+    <section id="apercu" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <!-- Colonne 1: Texte Aperçu -->
+          <div class="fade-in-up">
+            <h2 class="text-4xl font-extrabold mb-6 text-gray-900">Aperçu</h2>
+            <!-- Texte basé sur le lorem ipsum de l'image -->
+            <p class="text-gray-600 mb-4 text-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.
+            </p>
+            <a href="#vision" class="btn-primary text-sm">En savoir plus</a>
+          </div>
+
+          <!-- Colonne 2: Image (Placeholder) -->
+          <div class="fade-in-up">
+            <img
+              src="./images/travaux.png"
+              alt="Équipe de construction sur site"
+              class="w-full h-auto rounded-xl shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION Engagement (Avec 3 cartes de valeurs clés) -->
+    <section id="apercu" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-extrabold text-center mb-16 text-gray-900">
+          Notre Engagement
+        </h2>
+
+        <!-- Cartes de Valeurs Clés -->
+        <div class="grid md:grid-cols-3 gap-10">
+          <!-- Carte 1: Innovation -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-xl border-t-4 border-[--color-primary] text-center card-hover transition duration-300"
+          >
+            <div class="text-[--color-primary] mb-4">
+              <i data-lucide="lightbulb" class="w-12 h-12 mx-auto"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900">Innovation</h3>
+            <p class="text-gray-600">
+              Nous intégrons les dernières technologies et matériaux pour
+              garantir des constructions à la pointe du progrès et
+              écologiquement responsables.
+            </p>
+          </div>
+
+          <!-- Carte 2: Qualité -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-xl border-t-4 border-[--color-primary] text-center card-hover transition duration-300"
+          >
+            <div class="text-[--color-primary] mb-4">
+              <i data-lucide="award" class="w-12 h-12 mx-auto"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900">
+              Qualité Certifiée
+            </h3>
+            <p class="text-gray-600">
+              Chaque projet est mené avec une rigueur exceptionnelle, du design
+              à la livraison, assurant une durabilité sans compromis.
+            </p>
+          </div>
+
+          <!-- Carte 3: Partenariat -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-xl border-t-4 border-[--color-primary] text-center card-hover transition duration-300"
+          >
+            <div class="text-[--color-primary] mb-4">
+              <i data-lucide="handshake" class="w-12 h-12 mx-auto"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900">Partenariat</h3>
+            <p class="text-gray-600">
+              Nous travaillons main dans la main avec nos clients pour
+              transformer leurs visions en structures réelles, dans le respect
+              des délais et budgets.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION NOS SERVICES (CORRIGÉE SELON L'IMAGE FOURNIE) -->
+    <section id="services" class="py-20 md:py-28 bg-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-extrabold text-center mb-16 text-gray-900">
+          Nos Services d'Expertise
+        </h2>
+
+        <!-- Description générale (tirée de la maquette) -->
+        <p
+          class="text-center text-gray-600 mb-12 max-w-4xl mx-auto text-lg fade-in-up"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+
+        <!-- Liste des services (3 services basés sur l'image) -->
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Service 1: Batiment -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-lg border-t-4 border-[--color-primary] card-hover transition duration-300"
+          >
+            <!-- Placeholder image for visual consistency with the original image section -->
+            <img
+              src="images/batiment.png"
+              alt="Batiment"
+              class="w-full h-auto rounded-lg mb-4 object-cover"
+            />
+
+            <h4 class="font-bold text-xl mb-3 text-gray-900">Batiment</h4>
+            <p class="text-sm text-gray-600 mb-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam.
+            </p>
+            <a
+              href="#contact"
+              class="text-[--color-primary] font-semibold text-sm hover:underline flex items-center"
+            >
+              En savoir plus
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+
+          <!-- Service 2: Travaux Publics -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-lg border-t-4 border-[--color-primary] card-hover transition duration-300"
+          >
+            <!-- Placeholder image for visual consistency with the original image section -->
+            <img
+              src="./images/travaux.png"
+              alt="Travaux Publics"
+              class="w-full h-auto rounded-lg mb-4 object-cover"
+            />
+
+            <h4 class="font-bold text-xl mb-3 text-gray-900">
+              Travaux Publics
+            </h4>
+            <p class="text-sm text-gray-600 mb-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam.
+            </p>
+            <a
+              href="#contact"
+              class="text-[--color-primary] font-semibold text-sm hover:underline flex items-center"
+            >
+              En savoir plus
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+
+          <!-- Service 3: Architecture -->
+          <div
+            class="fade-in-up p-8 bg-white rounded-xl shadow-lg border-t-4 border-[--color-primary] card-hover transition duration-300"
+          >
+            <!-- Placeholder image for visual consistency with the original image section -->
+            <img
+              src="images/architecture.png"
+              alt="Architecture"
+              class="w-full h-auto rounded-lg mb-4 object-cover"
+            />
+
+            <h4 class="font-bold text-xl mb-3 text-gray-900">Architecture</h4>
+            <p class="text-sm text-gray-600 mb-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam.
+            </p>
+            <a
+              href="#contact"
+              class="text-[--color-primary] font-semibold text-sm hover:underline flex items-center"
+            >
+              En savoir plus
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION NOS RÉALISATIONS (Galerie moderne) -->
+    <section id="realisations" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-extrabold text-gray-900">
+            Projets Emblématiques
+          </h2>
+          <p class="text-lg text-gray-500 mt-3">
+            Découvrez l'étendue de notre expertise à travers nos dernières
+            réalisations.
+          </p>
+        </div>
+
+        <!-- Grille de Réalisations (Mise en page moderne en maçonnerie simulée) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Réalisation 1 (Plus grande) -->
+          <div
+            class="fade-in-up col-span-1 lg:col-span-2 relative overflow-hidden rounded-xl shadow-xl group cursor-pointer h-[400px]"
+          >
+            <img
+              src="./images/c1.jpg"
+              alt=""
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end"
+            >
+              <h3 class="text-2xl font-bold text-white mb-1">
+                Résidence Émeraude
+              </h3>
+              <p class="text-sm text-gray-200">
+                Construction de 50 appartements haut standing.
+              </p>
+            </div>
+          </div>
+
+          <!-- Réalisation 2 -->
+          <div
+            class="fade-in-up relative overflow-hidden rounded-xl shadow-xl group cursor-pointer h-[400px]"
+          >
+            <img
+              src="./images/c2.jpg"
+              alt=""
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end"
+            >
+              <h3 class="text-2xl font-bold text-white mb-1">
+                Siège Social Tech
+              </h3>
+              <p class="text-sm text-gray-200">
+                Bâtiment de bureaux intelligent et écologique.
+              </p>
+            </div>
+          </div>
+
+          <!-- Réalisation 3 -->
+          <div
+            class="fade-in-up relative overflow-hidden rounded-xl shadow-xl group cursor-pointer h-[300px]"
+          >
+            <img
+              src="./images/c3.jpg"
+              alt=""
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end"
+            >
+              <h3 class="text-2xl font-bold text-white mb-1">
+                Aménagement Urbain
+              </h3>
+              <p class="text-sm text-gray-200">
+                Rénovation complète d'une place publique et de ses accès.
+              </p>
+            </div>
+          </div>
+
+          <!-- Réalisation 4 -->
+          <div
+            class="fade-in-up relative overflow-hidden rounded-xl shadow-xl group cursor-pointer h-[300px]"
+          >
+            <img
+              src="./images/cover.jpeg"
+              alt=""
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end"
+            >
+              <h3 class="text-2xl font-bold text-white mb-1">
+                Complexe Logistique
+              </h3>
+              <p class="text-sm text-gray-200">
+                Extension et mise aux normes d'un entrepôt.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bouton Voir Plus -->
+          <div class="col-span-1 sm:col-span-2 lg:col-span-3 text-center mt-8">
+            <a
+              href="#"
+              class="btn-primary border border-[--color-primary] bg-transparent text-[--color-primary] hover:bg-[--color-primary] hover:text-white transition duration-300"
+            >
+              Voir toutes les réalisations
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION NOTRE VISION (Avec image d'ambiance et call-to-action) -->
+    <section
+      id="vision"
+      class="relative py-20 md:py-28 overflow-hidden bg-[--color-primary]"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center text-white">
+          <!-- Texte de la Vision -->
+          <div class="fade-in-up">
+            <h2 class="text-4xl font-extrabold mb-6">Bâtir pour l'Avenir</h2>
+            <p class="text-lg opacity-90 mb-6">
+              Notre vision va au-delà du béton et de l'acier. Nous nous
+              engageons à créer des espaces qui améliorent la vie, respectent
+              l'environnement et s'intègrent harmonieusement dans le paysage
+              urbain de demain.
+            </p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start">
+                <i
+                  data-lucide="check-circle"
+                  class="w-6 h-6 mr-3 flex-shrink-0 text-white"
+                ></i>
+                <span class="opacity-90">Durabilité et Éco-conception.</span>
+              </li>
+              <li class="flex items-start">
+                <i
+                  data-lucide="check-circle"
+                  class="w-6 h-6 mr-3 flex-shrink-0 text-white"
+                ></i>
+                <span class="opacity-90"
+                  >Sécurité et excellence opérationnelle.</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i
+                  data-lucide="check-circle"
+                  class="w-6 h-6 mr-3 flex-shrink-0 text-white"
+                ></i>
+                <span class="opacity-90"
+                  >Innovation au service de l'efficacité.</span
+                >
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn-primary bg-white text-[--color-primary] hover:bg-gray-100 shadow-xl"
+            >
+              Discutons de votre projet
+            </a>
+          </div>
+
+          <!-- Image d'ambiance (Placeholder) -->
+          <div class="fade-in-up hidden lg:block">
+            <img
+              src="./images/vision.png"
+              alt=""
+              class="w-full h-auto rounded-xl shadow-2xl transition duration-500 hover:rotate-1 hover:scale-[1.02]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-12 border-b border-gray-700 pb-12">
+          <!-- Colonne 1: Logo & Slogan -->
+          <div>
+            <a href="#" class="text-2xl font-extrabold flex items-center mb-3">
+              <img class="logo" src="images/logo-blanc.png" alt="Logo Moavis" />
+            </a>
+            <p class="text-gray-400 text-sm mt-4">
+              Le plaisir de bâtir des structures durables et inspirantes.
+            </p>
+          </div>
+
+          <!-- Colonne 2: Liens Rapides -->
+          <div>
+            <h5 class="font-bold text-lg mb-4 text-[--color-primary]">
+              Explorer
+            </h5>
+            <ul class="space-y-2 text-gray-400 text-sm">
+              <li>
+                <a href="#apercu" class="hover:text-white transition">Aperçu</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-white transition"
+                  >Nos Services</a
+                >
+              </li>
+              <li>
+                <a href="#realisations" class="hover:text-white transition"
+                  >Nos Réalisations</a
+                >
+              </li>
+              <li>
+                <a href="#vision" class="hover:text-white transition"
+                  >Notre Vision</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Colonne 3: Contact -->
+          <div>
+            <h5 class="font-bold text-lg mb-4 text-[--color-primary]">
+              Contact
+            </h5>
+            <ul class="space-y-2 text-gray-400 text-sm">
+              <li>
+                <i data-lucide="mail" class="w-4 h-4 inline-block mr-2"></i>
+                info@moavis.com
+              </li>
+              <li>
+                <i data-lucide="phone" class="w-4 h-4 inline-block mr-2"></i>
+                +33 1 23 45 67 89
+              </li>
+              <li>
+                <i data-lucide="map-pin" class="w-4 h-4 inline-block mr-2"></i>
+                123 Rue de la Construction, 75001 Paris
+              </li>
+            </ul>
+          </div>
+
+          <!-- Colonne 4: Newsletter (Exemple) -->
+          <div>
+            <h5 class="font-bold text-lg mb-4 text-[--color-primary]">
+              Restez Informé
+            </h5>
+            <p class="text-gray-400 text-sm mb-3">
+              Inscrivez-vous à notre newsletter pour les actualités.
+            </p>
+            <form action="#" class="flex">
+              <input
+                type="email"
+                placeholder="Votre email"
+                class="p-3 rounded-l-md w-full text-gray-900 focus:ring-2 focus:ring-[--color-primary] focus:outline-none"
+                required
+              />
+              <button
+                type="submit"
+                class="bg-[--color-primary] p-3 rounded-r-md hover:bg-[--color-primary-dark] transition"
+              >
+                <i data-lucide="send" class="w-5 h-5"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-gray-500 text-sm">
+          &copy; <span id="current-year"></span> Moavis. Tous droits réservés.
+        </div>
+      </div>
+    </footer>
+
+    <!-- LOGIQUE JAVASCRIPT POUR LES ANIMATIONS ET LA NAV MOBILE -->
+    <script>
+      // Initialisation des icônes Lucide
+      lucide.createIcons();
+
+      // 1. Gestion de la barre de navigation (Sticky/Transparence)
+      const navbar = document.getElementById("navbar");
+      const heroImage = document.getElementById("hero-image");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          // Change le style de la barre de navigation après 50px de défilement
+          navbar.classList.add("nav-sticky");
+          navbar.classList.remove("bg-white");
+        } else {
+          // Rétablit le style initial
+          navbar.classList.remove("nav-sticky");
+          navbar.classList.add("bg-white");
+        }
+      });
+
+      // 2. Gestion du Menu Mobile
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Fermer le menu après un clic sur un lien mobile
+      document.querySelectorAll("#mobile-menu a").forEach((item) => {
+        item.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // 3. Gestion de l'Année dans le Footer
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+
+      // 4. Animation au défilement (Observer API pour un effet moderne)
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1, // Déclenche l'animation lorsque 10% de l'élément est visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target); // Arrête d'observer une fois l'animation déclenchée
+          }
+        });
+      }, observerOptions);
+
+      // Applique l'observateur à tous les éléments ayant la classe 'fade-in-up'
+      document.querySelectorAll(".fade-in-up").forEach((element) => {
+        observer.observe(element);
+      });
+    </script>
+  </body>
+</html>
