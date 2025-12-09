@@ -129,7 +129,20 @@
       }
 
       .chero {
+        /* Utilisez une couleur de fond temporaire ou un fallback */
         background-image: url("images/cover.jpeg");
+        /* Assurez-vous que l'image est chargée correctement */
+        background-color: #333;
+      }
+
+      /* Style spécifique pour le menu mobile pour le faire glisser */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+      }
+      #mobile-menu.open {
+        max-height: 500px; /* Une valeur suffisamment grande pour le contenu */
       }
     </style>
   </head>
@@ -138,9 +151,18 @@
     <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
           <div class="flex items-center space-x-2">
-            <img class="logo" src="images/logo-noir.png" alt="" />
+            <!-- Ajout d'une gestion d'erreur pour l'image -->
+            <img
+              class="logo"
+              src="images/logo-noir.png"
+              onerror="this.onerror=null; this.src='https://placehold.co/100x40/000/fff?text=Moavis'"
+              alt="Logo Moavis"
+            />
           </div>
+
+          <!-- Menu Desktop (md:flex) -->
           <div class="hidden md:flex space-x-8">
             <a
               href="#accueil"
@@ -148,28 +170,109 @@
               >Accueil</a
             >
             <a
-              href="#"
+              href="#apercu"
               class="nav-link text-gray-700 hover:text-red-600 font-medium"
               >À propos</a
             >
-            <!-- <a
-              href="#services"
-              class="nav-link text-gray-700 hover:text-red-600 font-medium"
-              >Nos Services</a
-            > -->
             <a
-              href="#"
+              href="#realisations"
               class="nav-link text-gray-700 hover:text-red-600 font-medium"
               >Réalisations</a
             >
-            <!-- <a
+            <a
               href="#mission"
               class="nav-link text-gray-700 hover:text-red-600 font-medium"
               >Notre Mission</a
-            > -->
+            >
           </div>
+
+          <!-- Bouton Contact & Menu Mobile Toggle -->
+          <div class="flex items-center space-x-4">
+            <!-- Bouton Contact (Affiché sur Desktop, caché sur Mobile pour la version full-size) -->
+            <button
+              class="btn-primary text-white px-6 py-3 rounded-full font-semibold hidden md:block"
+            >
+              Contactez-Nous
+            </button>
+
+            <!-- Bouton Contact (Version mobile/compacte, caché sur Desktop) -->
+            <button
+              class="btn-primary text-white px-4 py-2 text-sm rounded-full font-semibold md:hidden"
+            >
+              Contact
+            </button>
+
+            <!-- Menu Hamburger (Visible uniquement sur Mobile) -->
+            <button
+              id="mobile-menu-toggle"
+              class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition focus:outline-none"
+            >
+              <!-- Icône Menu -->
+              <svg
+                id="menu-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+              <!-- Icône Fermer (initialement cachée) -->
+              <svg
+                id="close-icon"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenu du Menu Mobile (Utilise 'open' pour afficher) -->
+      <div
+        id="mobile-menu"
+        class="md:hidden absolute top-20 left-0 w-full bg-white shadow-xl py-4"
+      >
+        <div class="flex flex-col space-y-2 px-4">
+          <!-- Les liens utiliseront la fonction JS pour fermer le menu -->
+          <a
+            href="#accueil"
+            class="mobile-nav-link text-gray-700 hover:text-red-600 font-medium p-2 rounded-lg"
+            >Accueil</a
+          >
+          <a
+            href="#apercu"
+            class="mobile-nav-link text-gray-700 hover:text-red-600 font-medium p-2 rounded-lg"
+            >À propos</a
+          >
+          <a
+            href="#realisations"
+            class="mobile-nav-link text-gray-700 hover:text-red-600 font-medium p-2 rounded-lg"
+            >Réalisations</a
+          >
+          <a
+            href="#mission"
+            class="mobile-nav-link text-gray-700 hover:text-red-600 font-medium p-2 rounded-lg"
+            >Notre Mission</a
+          >
+
+          <!-- Bouton Contact full-width dans le menu -->
           <button
-            class="btn-primary text-white px-6 py-3 rounded-full font-semibold"
+            class="btn-primary text-white w-full px-4 py-3 rounded-full font-semibold mt-4"
           >
             Contactez-Nous
           </button>
@@ -180,7 +283,7 @@
     <!-- Hero Section -->
     <section
       id="accueil"
-      class="relative h-screen flex items-center justify-center overflow-hidden mt-20"
+      class="relative h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       <div
         class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"
@@ -257,6 +360,7 @@
                 src="images/c1.jpg"
                 alt="Construction"
                 class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF0000/ffffff?text=Construction+1'"
               />
             </div>
             <div
@@ -290,6 +394,7 @@
                 src="images/batiment.png"
                 alt="Bâtiment"
                 class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x256/FEE2E2/EF4444?text=Batiment'"
               />
             </div>
             <div class="p-6">
@@ -317,6 +422,7 @@
                 src="images/travaux.png"
                 alt="Travaux Publics"
                 class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x256/FEE2E2/EF4444?text=Travaux+Publics'"
               />
             </div>
             <div class="p-6">
@@ -346,6 +452,7 @@
                 src="images/architecture.png"
                 alt="Architecture"
                 class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/400x256/FEE2E2/EF4444?text=Architecture'"
               />
             </div>
             <div class="p-6">
@@ -432,6 +539,7 @@
                 alt="Réalisation"
                 class="w-full h-64 object-cover"
                 style="height: 100%"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF0000/ffffff?text=Realisation+1'"
               />
             </div>
             <div class="hover-scale rounded-xl overflow-hidden shadow-lg">
@@ -439,6 +547,7 @@
                 src="images/c2.jpg"
                 alt="Projet"
                 class="w-full h-48 object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/300x200/FF0000/ffffff?text=Realisation+2'"
               />
             </div>
             <div class="hover-scale rounded-xl overflow-hidden shadow-lg">
@@ -446,6 +555,7 @@
                 src="images/c3.jpg"
                 alt="Bâtiment"
                 class="w-full h-48 object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/300x200/FF0000/ffffff?text=Realisation+3'"
               />
             </div>
           </div>
@@ -477,6 +587,7 @@
             src="images/mission.png"
             alt="Notre Mission"
             class="w-full h-96 object-cover"
+            onerror="this.onerror=null; this.src='https://placehold.co/1000x400/FF0000/ffffff?text=Mission'"
           />
           <div class="absolute inset-0 flex items-center justify-center z-20">
             <div class="p-8 sshadow-2xl">
@@ -486,6 +597,7 @@
                     class="logo2"
                     src="images/logo-blanc.png"
                     alt="Logo Moavis"
+                    onerror="this.onerror=null; this.src='https://placehold.co/150x60/fff/000?text=Moavis+Blanc'"
                   />
                 </div>
               </div>
@@ -510,21 +622,33 @@
             <div
               class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
             >
-              <img src="images/company.png" alt="" />
+              <img
+                src="images/company.png"
+                alt="Partenaire"
+                onerror="this.onerror=null; this.src='https://placehold.co/120x40/fff/000?text=PARTNER+1'"
+              />
             </div>
           </a>
           <a href="#">
             <div
               class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
             >
-              <img src="images/company.png" alt="" />
+              <img
+                src="images/company.png"
+                alt="Partenaire"
+                onerror="this.onerror=null; this.src='https://placehold.co/120x40/fff/000?text=PARTNER+2'"
+              />
             </div>
           </a>
           <a href="#">
             <div
               class="bg-white p-8 rounded-xl shadow-lg hover-scale flex items-center justify-center h-32 overflow-hidden"
             >
-              <img src="images/company.png" alt="" />
+              <img
+                src="images/company.png"
+                alt="Partenaire"
+                onerror="this.onerror=null; this.src='https://placehold.co/120x40/fff/000?text=PARTNER+3'"
+              />
             </div>
           </a>
         </div>
@@ -540,7 +664,12 @@
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div class="flex items-center space-x-2 mb-4">
-              <img class="logo" src="images/logo-blanc.png" alt="Logo Moavis" />
+              <img
+                class="logo"
+                src="images/logo-blanc.png"
+                alt="Logo Moavis"
+                onerror="this.onerror=null; this.src='https://placehold.co/100x40/fff/000?text=Moavis+Blanc'"
+              />
             </div>
             <p class="text-gray-400 text-sm">Le plaisir de bâtir</p>
           </div>
@@ -597,7 +726,7 @@
             <a href="#" class="text-gray-400 hover:text-red-600 transition">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
                 />
               </svg>
             </a>
@@ -615,5 +744,58 @@
         </div>
       </div>
     </footer>
+
+    <!-- Script pour le Menu Mobile -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.getElementById("mobile-menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+
+        const toggleMenu = () => {
+          const isMenuOpen = mobileMenu.classList.contains("open");
+
+          if (isMenuOpen) {
+            // Fermer le menu
+            mobileMenu.classList.remove("open");
+            menuIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+            // Rendre le body défilable à nouveau
+            document.body.style.overflow = "";
+          } else {
+            // Ouvrir le menu
+            mobileMenu.classList.add("open");
+            menuIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+            // Empêcher le défilement du body lorsque le menu est ouvert
+            document.body.style.overflow = "hidden";
+          }
+        };
+
+        if (toggleButton) {
+          toggleButton.addEventListener("click", toggleMenu);
+        }
+
+        // Fermer le menu lors du clic sur un lien de navigation
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            // Un petit délai pour permettre la navigation avant de fermer
+            setTimeout(toggleMenu, 100);
+          });
+        });
+
+        // S'assurer que le menu est fermé si la fenêtre est redimensionnée à la taille desktop
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth >= 768 &&
+            mobileMenu.classList.contains("open")
+          ) {
+            toggleMenu(); // Force la fermeture
+          }
+        });
+      });
+    </script>
   </body>
 </html>
